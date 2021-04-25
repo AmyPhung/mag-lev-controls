@@ -7,17 +7,28 @@ import random
 fig = plt.figure()
 ax1 = fig.add_subplot(1,1,1)
 
-ts = []
-ys = []
+dt = 0.1 # Timestep size [s]
+m = 0.5 # Object mass [kg]
+F_g = m * -9.81 # Force of gravity [N]
 
-dt = 0.1
+y_hat = 0 # Initial position [m]
+dy_hat = 0 # Initial velocity [m/s]
+
+ts = [0]
+ys = [y_hat]
+dys = [dy_hat]
 
 def animate(i):
+    if i == 0:
+        return
+    i = i + 1
     t = float(i*dt)
-    y = random.randint(0,5)
+    dy = float(dys[-1] + F_g*dt)
+    y = float(ys[-1] + dy*dt)
 
     ts.append(t)
     ys.append(y)
+    dys.append(dy)
 
     ax1.cla()
     ax1.plot(ts, ys)
