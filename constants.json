@@ -1,0 +1,16 @@
+{
+  "_mu_info": "Permeability of free space [T m A-1]",
+  "mu": 1.25663706e-6,
+  "_N_info": "Number of turns",
+  "N": 100,
+  "_A_info": "Area of magnetic core [m^2]",
+  "A": 0.05,
+  "_L_info": "Length [m]",
+  "L": 0.02,
+  "_m_info": "Mass [kg]",
+  "m": 0.01,
+  "_m2_info": "Permanent magnet stregnth [A m]",
+  "m2": 120,
+  "_g_info": "Acceleration due to gravity [m/s^2]",
+  "g": 9.81
+}
