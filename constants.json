@@ -5,7 +5,7 @@
   "N": 100.0,
   "_A_info": "Area of magnetic core [m^2]",
   "A": 0.05,
-  "_l_info": "Length [m]",
+  "_l_info": "Electromagnet length [m]",
   "l": 0.02,
   "_m_info": "Mass [kg]",
   "m": 0.01,
@@ -16,5 +16,18 @@
   "_L_info": "Electromagnet Inductance [1 kg m2 s−2 A−2]",
   "L": 200.0,
   "_R_info": "Circuit Resistance [ohms]",
-  "R": 100.0
+  "R": 100.0,
+  "_B_r_info": "Permanent magnet remanence field [T]",
+  "B_r": 1.3,
+  "_d_info": "Permanent magnet thickness [m]",
+  "d": 0.01,
+  "_r_info": "Permanent magnet radius [m]",
+  "r": 0.01,
+  "_I_h_info": "Hall-effect sensor current [A]",
+  "I_h": 0.02,
+  "_t_h_info": "Hall-effect sensor thickness [mm]",
+  "t_h": 0.5,
+  "_R_h_info": "Hall-effect sensor coefficient",
+  "R_h": 200
+
 }

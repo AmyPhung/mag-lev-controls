@@ -1,12 +1,20 @@
 """
 Linear model of mag-lev system
+
+Current assumptions:
+- Hall effect sensor is only dependent on permanent magnet's location
+- Magnets are "far away" from electromagnet - assuming point-like poles
+instead of finite surfaces
+- Setpoint is chosen such that constants in linearized ODE cancel out with
+gravity
+- Electromagnet inductance isn't important to consider
 """
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib import style
 import random
-from math import pi
+from math import pi, sqrt
 import json
 
 # Initialize figures
@@ -34,24 +42,44 @@ dys = [dy_hat]   # Magnet position derivative at each timestep
 Is = [I_hat]     # Circuit current at each timestep
 dIs = [0.0]        # Circuit current derivative at each timestep
 
-def controller():
-    """ Takes in __ as input, outputs a voltage to send to the system """
+def controller(V_h):
+    """ Takes in hall effect sensor voltage as input, outputs a voltage to
+    send to the system """
     return 5.0
 
-# def sensor():
+def sensor(y):
+    """ Compute hall effect sensor reading based on magnet position """
+    # Compute magnetic flux density for cylindrical magnet
+    B = (c['B_r']/2) * (                                          \
+        (c['d'] + y) / sqrt(c['r']**2 + (c['d'] + y)**2) -        \
+        y / sqrt(c['r']**2 + y**2) )
 
+    # TODO: Figure out how to get hall effect coefficient
+    V_h = c['R_h'] * (c['I_h'] / c['t_h'] * B)
+    return V_h
 
 def animate(i):
     if i == 0:
         return
     i = i + 1
 
-    # Update controller input
-    V = controller()
+    # Compute sensor response based on last timestep
+    V_h = sensor(ys[-1])
 
-    # Compute current
-    dI = (V - Is[-1]*c['R']) / c['L']
-    I = Is[-1] + dI
+    # Update controller input
+    V = controller(V_h)
+
+    # Compute current - Inductor model
+    # Note: For certain constant values, the effect of the inductor will be too
+    # small, and cause rounding errors.
+    # dI = (V - Is[-1]*c['R']) / c['L']
+    # I = Is[-1] + dI
+
+    # Compute current - excluding inductor
+    # Works well for small inductance values (assume electromagnet responds)
+    # instantaneously
+    dI = 0
+    I = V / c['R']
 
     # Compute new position
     F_g = c['m'] * 9.81 # Force of gravity [N]
