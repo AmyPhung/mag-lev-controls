@@ -13,7 +13,7 @@ c = json.load(f)
 Y_bar = sympy.symbols('Y_bar')
 
 # Constants
-I_bar = (c['m']*c['g'] * c['L']*2*pi * Y_bar**2) / \
+I_bar = (c['m']*c['g'] * c['l']*2*pi * Y_bar**2) / \
         (c['mu']*c['N']*c['A']*c['m2'])
 
 sympy.plot(I_bar, (Y_bar,0,0.1),
