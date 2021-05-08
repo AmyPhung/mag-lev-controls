@@ -14,7 +14,7 @@
   "_g_info": "Acceleration due to gravity [m/s^2]",
   "g": 9.81,
   "_L_info": "Electromagnet Inductance [1 kg m2 s−2 A−2]",
-  "L": 200.0,
+  "L": 2,
   "_R_info": "Circuit Resistance [ohms]",
   "R": 100.0,
   "_B_r_info": "Permanent magnet remanence field [T]",

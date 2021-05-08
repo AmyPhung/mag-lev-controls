@@ -17,5 +17,5 @@ I_bar = (c['m']*c['g'] * c['l']*2*pi * Y_bar**2) / \
         (c['mu']*c['N']*c['A']*c['m2'])
 
 sympy.plot(I_bar, (Y_bar,0,0.1),
-    xlabel='Y_bar (position setpoint) [m]',
-    ylabel='I_bar (current setpoint) [A]')
+    ylabel='Y_bar (position setpoint) [m]',
+    xlabel='I_bar (current setpoint) [A]')
